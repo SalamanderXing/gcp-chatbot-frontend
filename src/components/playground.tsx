@@ -1,6 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
+import "./playground.css";
 import {
   IMessage,
   useChatInteract,
@@ -47,16 +48,39 @@ export function Playground() {
       </div>
     );
   };
-
+  // <div className="flex-1 overflow-auto p-6">
+  //   <div className="space-y-4">
+  //     {messages.map((message) => renderMessage(message))}
+  //     <div ref={messagesEndRef} />
+  //   </div>
+  // </div>
+  // <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 w-full">
+  //   <div className="flex items-center space-x-2">
+  //     <Input
+  //       autoFocus
+  //       className="flex-1"
+  //       id="message-input"
+  //       placeholder="Type a message"
+  //       value={inputValue}
+  //       onChange={(e) => setInputValue(e.target.value)}
+  //       onKeyUp={(e) => {
+  //         if (e.key === "Enter") {
+  //           handleSendMessage();
+  //         }
+  //       }}
+  //     />
+  //     <Button onClick={handleSendMessage} type="submit">
+  //       Send
+  //     </Button>
+  //   </div>
+  // </div>
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 flex flex-col">
-      <div className="flex-1 overflow-auto p-6">
-        <div className="space-y-4">
-          {messages.map((message) => renderMessage(message))}
-          <div ref={messagesEndRef} />
-        </div>
+      <div className="space-y-4 chat-container overflow-auto">
+        {messages.map((message) => renderMessage(message))}
+        <div ref={messagesEndRef} />
       </div>
-      <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 w-full">
+      <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 w-full input-container">
         <div className="flex items-center space-x-2">
           <Input
             autoFocus

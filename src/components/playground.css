@@ -1,0 +1,22 @@
+@media (max-width: 600px) {
+  /* Adjustments for smaller screens */
+  .chat-container {
+    height: calc(
+      100vh - 70px
+    ); /* Example, adjust based on actual input area height */
+  }
+
+  .input-container {
+    height: 55px; /* Adjust based on actual need */
+  }
+}
+.chat-container {
+  height: calc(
+    100vh - 60px
+  ); /* Example, adjust based on actual input area height */
+  padding: 10px;
+}
+
+.input-container {
+  height: 60px; /* Adjust based on actual need */
+}
