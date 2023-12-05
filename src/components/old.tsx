@@ -1,26 +1,18 @@
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
+
 import {
   IMessage,
   useChatInteract,
   useChatMessages,
 } from "@chainlit/react-client";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 export function Playground() {
   const [inputValue, setInputValue] = useState("");
   const { sendMessage } = useChatInteract();
   const { messages } = useChatMessages();
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-
-  const scrollToBottom = () => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  useEffect(() => {
-    scrollToBottom();
-  }, [messages]);
 
   const handleSendMessage = () => {
     const content = inputValue.trim();
@@ -38,6 +30,14 @@ export function Playground() {
   };
 
   const renderMessage = (message: IMessage) => {
+    // const dateOptions: Intl.DateTimeFormatOptions = {
+    //   hour: "2-digit",
+    //   minute: "2-digit",
+    // };
+    // const date = new Date(message.createdAt).toLocaleTimeString(
+    //   undefined,
+    //   dateOptions
+    // );
     return (
       <div key={message.id} className="flex items-start space-x-2">
         <div className="w-20 text-sm text-green-500">{message.author}</div>
@@ -53,10 +53,9 @@ export function Playground() {
       <div className="flex-1 overflow-auto p-6">
         <div className="space-y-4">
           {messages.map((message) => renderMessage(message))}
-          <div ref={messagesEndRef} />
         </div>
       </div>
-      <div className="border-t p-4 bg-white dark:bg-gray-800 fixed bottom-0 w-full">
+      <div className="border-t p-4 bg-white dark:bg-gray-800">
         <div className="flex items-center space-x-2">
           <Input
             autoFocus
